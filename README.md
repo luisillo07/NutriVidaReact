@@ -1,16 +1,67 @@
-# React + Vite
+# Nombre del Equipo
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+- Team Salud
 
-Currently, two official plugins are available:
+## Integrantes
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Javier Espinoza - jav.espinozav@duocuc.cl
+- Benjamin Neira - ben.neiran@duocuc.cl
+- Luis Laffertte - lu.laffertte@duocuc.cl
 
-## React Compiler
+## Caso
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+NutriVida
 
-## Expanding the Oxlint configuration
+## Descripción del caso
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+NutriVida es una aplicación orientada a digitalizar y presentar una solución web al negocio. 
+La plataforma permite a los usuarios buscar información relevante y poder gestionar las citas con los profesionales en cuestión
+
+El sistema busca facilitar el contacto entre los pacientes y la clínica, bajando la fricción y el ausentismo de citas por parte de los pacientes
+
+## Estructura del proyecto
+
+src/
+├── assets/
+├── components/
+│   ├── atoms/
+│   │   ├── boton.jsx
+│   │   └── enlace.jsx
+│   ├── molecules/
+│   │   └── formulario_campo.jsx
+│   ├── organisms/
+│   │   └── formulario_login.jsx
+│   └── templates/
+├── pages/
+│   └── login.jsx
+├── App.jsx
+├── index.css
+└── main.jsx
+
+## Tecnologías utilizadas
+
+- React
+- Vite
+- React Bootstrap
+- Bootstrap
+- JavaScript
+- HTML
+- CSS
+
+## Cómo ejecutar el proyecto
+
+Primero clonar el repositorio y entrar a la carpeta:
+- git clone https://github.com/luisillo07/NutriVidaReact.git
+- cd NutriVidaReact
+
+Luego instalar las dependencias:
+- npm install
+
+Ejecutar el proyecto: 
+- npm run dev
+
+Y finalmente abrir el navegador:
+- http://localhost:5173/
+
+## Material complementario
+https://drive.google.com/drive/folders/1lc6M8MVXT_l2MKJLL5OqpnABWThHOioA?usp=drive_link
