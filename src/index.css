@@ -26,3 +26,44 @@
     min-height: 100vh;
     min-height: 100svh;
   }
+
+
+/* NAVEGACIÓN */
+
+.navegacion-nutrivida {
+    background-color: #F4FAFD;
+    padding: 15px 0;
+}
+
+.navegacion-nutrivida .nav-brand {
+    font-weight: 600;
+    font-size: 24px;
+    color: #2D3436;
+}
+
+.navegacion-nutrivida .nav-link {
+    color: #2D3436;
+    margin-left: 15px;
+}
+
+.navegacion-nutrivida .nav-link:hover {
+    color: #198754;
+}
+
+
+/* FOOTER */
+
+.footer-nutrivida {
+    background-color: #F4FAFD;
+    color: #2D3436;
+    padding: 40px 0 20px;
+    margin-top: 50px;
+}
+
+.footer-nutrivida h5 {
+    font-weight: 600;
+}
+
+.footer-nutrivida p {
+    margin-bottom: 5px;
+  }
