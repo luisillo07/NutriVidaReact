@@ -1,16 +1,14 @@
 function Precio(props) {
-    const isValidPrecio =
-        typeof props.precio === "number" && Number.isFinite(props.precio);
+    const precioEsValido =
+        Number.isFinite(props.precio) && props.precio >= 0;
 
-    const formattedPrecio = isValidPrecio
-        ? `$${new Intl.NumberFormat("es-CL", {
-        maximumFractionDigits: 0,
-        }).format(props.precio)}`
-        : "—";
+    const precio = precioEsValido
+        ? `$${props.precio.toLocaleString("es-CL")}`
+        : "Precio no disponible";
 
     return (
         <span className={props.className || ""}>
-            {formattedPrecio}
+            {precio}
         </span>
     );
 }
