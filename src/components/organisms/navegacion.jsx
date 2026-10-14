@@ -1,10 +1,17 @@
 import { Navbar, Nav, Container } from "react-bootstrap";
 
-function NavbarNutriVida() {
+function NavbarNutriVida({ onNavegar }) {
+    function ir(evento, ruta) {
+        // Permite abrir el enlace en otra pestaña con Ctrl/Cmd + clic.
+        if (evento.ctrlKey || evento.metaKey || evento.shiftKey || evento.altKey) return;
+        evento.preventDefault();
+        onNavegar(ruta);
+    }
+
     return (
         <Navbar expand="lg" className="navegacion-nutrivida">
             <Container>
-                <Navbar.Brand href="/">
+                <Navbar.Brand href="/" onClick={(evento) => ir(evento, "/")}>
                     NutriVida
                 </Navbar.Brand>
 
@@ -12,21 +19,29 @@ function NavbarNutriVida() {
 
                 <Navbar.Collapse id="navegacion-nutrivida">
                     <Nav className="ms-auto">
-                        <Nav.Link href="/">Inicio</Nav.Link>
+                        <Nav.Link href="/" onClick={(evento) => ir(evento, "/")}>Inicio</Nav.Link>
 
-                        <Nav.Link href="/servicios">
+                        <Nav.Link href="/servicios" onClick={(evento) => ir(evento, "/servicios")}>
                             Servicios
                         </Nav.Link>
 
-                        <Nav.Link href="/nutricionistas">
+                        <Nav.Link href="/nosotros" onClick={(evento) => ir(evento, "/nosotros")}>
+                            Nosotros
+                        </Nav.Link>
+
+                        <Nav.Link href="/nutricionistas" onClick={(evento) => ir(evento, "/nutricionistas")}>
                             Nutricionistas
                         </Nav.Link>
 
-                        <Nav.Link href="/agendar">
+                        <Nav.Link href="/contacto" onClick={(evento) => ir(evento, "/contacto")}>
+                            Contacto
+                        </Nav.Link>
+
+                        <Nav.Link href="/agendar" onClick={(evento) => ir(evento, "/agendar")}>
                             Agendar cita
                         </Nav.Link>
 
-                        <Nav.Link href="/login">
+                        <Nav.Link href="/login" onClick={(evento) => ir(evento, "/login")}>
                             Iniciar sesión
                         </Nav.Link>
                     </Nav>

@@ -63,5 +63,43 @@ Ejecutar el proyecto:
 Y finalmente abrir el navegador:
 - http://localhost:5173/
 
+## Navegación entre páginas
+
+La navegación usa `react-router-dom`, siguiendo el enfoque de la guía del módulo.
+`src/App.jsx` contiene `BrowserRouter`, `Routes` y el mapa de rutas:
+
+- `/`: Inicio.
+- `/nutricionistas`: Nutricionistas.
+- `/login`: Login.
+- `*`: página no encontrada, para cualquier otra dirección.
+
+`main.jsx` solo monta `App`; el router vive en `App.jsx`.
+`PlantillaPrincipal` llama a `useNavigate` y entrega la función `navigate` al menú
+y al footer mediante la prop `onNavegar`. Estos componentes conservan sus enlaces
+con `href`, cancelan la recarga con `preventDefault()` y llaman a `onNavegar(ruta)`.
+
+```jsx
+// Dentro de una página o plantilla, al nivel superior del componente:
+const navigate = useNavigate();
+
+// En un botón de esa página:
+<button onClick={() => navigate("/nutricionistas")}>Ver nutricionistas</button>
+
+// En App.jsx, para agregar una página previamente importada:
+<Route path="/nueva-pagina" element={<NuevaPagina />} />
+```
+
+Solo las páginas y plantillas importan el router. Los átomos, moléculas y organismos
+reciben funciones por props. Por ejemplo, `Enlace` recibe `onClick` y `Boton` también.
+La navegación permite usar Atrás y Adelante sin recargar la aplicación.
+
+Para agregar una página: crea su componente en `src/pages`, impórtalo en `App.jsx`,
+agrega su `Route` y conecta el enlace correspondiente del menú y del footer con `ir`.
+Servicios, Nosotros, Contacto y Agendar muestran la página no encontrada hasta que
+se creen sus páginas y rutas.
+
+En producción, configura el alojamiento para servir `index.html` cuando se abra
+una ruta de la aplicación directamente (por ejemplo, `/nutricionistas`).
+
 ## Material complementario
 https://drive.google.com/drive/folders/1lc6M8MVXT_l2MKJLL5OqpnABWThHOioA?usp=drive_link
