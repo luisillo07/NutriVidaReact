@@ -1,11 +1,16 @@
-import Plantilla from "../components/templates/plantilla_principal";
+import { Container } from "react-bootstrap";
+import PlantillaPrincipal from "../components/templates/plantilla_principal.jsx";
+import ListaNutricionistas from "../components/organisms/lista_nutricionistas.jsx";
+import nutricionistas from "../data/nutricionistas.js";
 
 function Nutricionistas() {
+
     return (
-        <Plantilla>
-            <h1>Nutricionistas</h1>
-            <p>Contenido específico para nutricionistas.</p>
-        </Plantilla>
+        <PlantillaPrincipal>
+            <Container fluid className="pagina-nutricionistas">
+                <ListaNutricionistas nutricionistas={nutricionistas} />
+            </Container>
+        </PlantillaPrincipal>
     );
 }
 
