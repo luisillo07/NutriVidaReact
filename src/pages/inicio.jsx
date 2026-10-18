@@ -1,14 +1,12 @@
-import PlantillaPublica from "../components/templates/plantilla_principal";
+import PlantillaPrincipal from "../components/templates/plantilla_principal";
 
 function Inicio() {
     return (
-        <PlantillaPublica>
-            <h1>Bienvenido a NutriVida</h1>
+        <PlantillaPrincipal>
+            <h1>Tu Bienestar comienza con una nutrición personalizada</h1>
 
-            <p>
-                Tu bienestar comienza con una buena alimentación.
-            </p>
-        </PlantillaPublica>
+            <p>En NutriVida, te acompañamos en el camino hacia una vida más saludable con planes de alimentación diseñados exclusivamente para ti.</p>
+        </PlantillaPrincipal>
     );
 }
 
