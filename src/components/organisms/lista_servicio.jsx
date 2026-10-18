@@ -1,7 +1,7 @@
 import { Col, Row } from "react-bootstrap";
 import TarjetaServicio from "../molecules/tarjeta_servicio.jsx";
 
-function ListaServicios(props) {
+function ListaServicio(props) {
     if (props.servicios.length === 0) {
         return <p role="status">No hay servicios disponibles.</p>;
     }
