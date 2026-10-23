@@ -7,7 +7,7 @@ function ListaNutricionistas(props) {
     }
 
     return (
-        <Row className="lista-nutricionistas">
+        <Row className="g-4">
             {props.nutricionistas.map((nutricionista) => (
                 <Col key={nutricionista.codigo} xs={12} xl={6}>
                     <TarjetaNutricionista nutricionista={nutricionista} />

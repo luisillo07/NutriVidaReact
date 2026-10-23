@@ -7,7 +7,7 @@ function Nutricionistas() {
 
     return (
         <PlantillaPrincipal>
-            <Container fluid className="pagina-nutricionistas">
+            <Container fluid className="px-4 py-4">
                 <ListaNutricionistas nutricionistas={nutricionistas} />
             </Container>
         </PlantillaPrincipal>
