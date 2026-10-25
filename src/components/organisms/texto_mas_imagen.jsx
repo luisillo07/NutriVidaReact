@@ -19,7 +19,7 @@ function TextoMasImagen(props) {
                         <Imagen
                             src={props.imagen}
                             alt={props.altImagen}
-                            className="img-nosotros"
+                            className="w-100 img-nosotros"
                         />
                     </Col>
                 </Row>
