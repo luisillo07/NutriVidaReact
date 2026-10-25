@@ -18,8 +18,10 @@ function NavbarNutriVida({ onNavegar }) {
                 <Navbar.Toggle aria-controls="navegacion-nutrivida" />
 
                 <Navbar.Collapse id="navegacion-nutrivida">
-                    <Nav className="ms-auto">
-                        <Nav.Link href="/" onClick={(evento) => ir(evento, "/")}>Inicio</Nav.Link>
+                    <Nav className="mx-lg-auto gap-lg-2">
+                        <Nav.Link href="/" onClick={(evento) => ir(evento, "/")}>
+                            Inicio
+                        </Nav.Link>
 
                         <Nav.Link href="/servicios" onClick={(evento) => ir(evento, "/servicios")}>
                             Servicios
@@ -36,13 +38,23 @@ function NavbarNutriVida({ onNavegar }) {
                         <Nav.Link href="/contacto" onClick={(evento) => ir(evento, "/contacto")}>
                             Contacto
                         </Nav.Link>
+                    </Nav>
 
-                        <Nav.Link href="/agendar" onClick={(evento) => ir(evento, "/agendar")}>
-                            Agendar cita
+                    <Nav className="gap-2 align-items-lg-center mt-3 mt-lg-0">
+                        <Nav.Link
+                            href="/login"
+                            className="navegacion-login"
+                            onClick={(evento) => ir(evento, "/login")}
+                        >
+                            Iniciar sesión
                         </Nav.Link>
 
-                        <Nav.Link href="/login" onClick={(evento) => ir(evento, "/login")}>
-                            Iniciar sesión
+                        <Nav.Link
+                            href="/agendar"
+                            className="navegacion-agendar text-center"
+                            onClick={(evento) => ir(evento, "/agendar")}
+                        >
+                            Agendar cita
                         </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>

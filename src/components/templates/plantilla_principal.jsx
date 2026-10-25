@@ -7,11 +7,13 @@ function PlantillaPrincipal({ children }) {
 
     return (
         <>
-            <NavbarNutriVida onNavegar={navigate} />
+            <div className="pantalla-principal">
+                <NavbarNutriVida onNavegar={navigate} />
 
-            <main>
-                {children}
-            </main>
+                <main className="contenido-principal">
+                    {children}
+                </main>
+            </div>
 
             <Footer onNavegar={navigate} />
         </>

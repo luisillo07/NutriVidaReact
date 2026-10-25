@@ -6,7 +6,7 @@ import Enlace from "../atoms/enlace.jsx";
 import {validarCorreo, validarObligatorio} from "../../utils/validaciones.js";
 import usuarios from "../../data/usuarios.js";
 
-function FormularioLogin() {
+function FormularioLogin({onIngresar}) {
 
     const [mensaje, setMensaje] = useState("");
     const [errores, setErrores] = useState({})
@@ -40,7 +40,16 @@ function FormularioLogin() {
             return;
         }
 
-        setMensaje("Ingreso correcto")
+        const datos = {
+            id: usuarioEncontrado.id,
+            nombre: usuarioEncontrado.nombre,
+            rut: usuarioEncontrado.rut,
+            correo: usuarioEncontrado.correo,
+            rol: usuarioEncontrado.rol};
+
+        onIngresar(datos);
+
+        console.log("Sesión iniciada: ", datos);
 
     }
 

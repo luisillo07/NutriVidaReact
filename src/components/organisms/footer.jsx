@@ -21,7 +21,7 @@ function Footer({ onNavegar }) {
                     <Col md={4}>
                         <h5>Navegación</h5>
 
-                        <Nav className="ms-auto">
+                        <Nav as="nav" aria-label="Navegación del pie de página" className="flex-column align-items-start footer-enlaces">
                             <Nav.Link href="/" onClick={(evento) => ir(evento, "/")}>Inicio</Nav.Link>
 
                             <Nav.Link href="/servicios" onClick={(evento) => ir(evento, "/servicios")}>

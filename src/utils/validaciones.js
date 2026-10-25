@@ -12,3 +12,7 @@ export function validarCorreo(valor) {
 export function validarTelefono(valor) {
     return PATRON_TELEFONO.test(valor.trim()) ? "" : 'Por favor, ingresa un número de teléfono válido. Ej: "+56912345678" o "912345678"';
 }
+
+export function normalizarRut(valor) {
+    return valor.replace(/[.\s-]/g, "").toUpperCase();
+}

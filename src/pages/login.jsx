@@ -3,8 +3,18 @@ import { Container, Row, Col } from "react-bootstrap";
 import FormularioLogin from "../components/organisms/formulario_login.jsx";
 import Enlace from "../components/atoms/enlace.jsx";
 
-function Login() {
+function Login({onIngresar}) {
     const navigate = useNavigate();
+
+    function ingresar(usuario) {
+        onIngresar(usuario);
+
+        if (usuario.rol === "paciente") {
+            navigate("/mis-citas");
+        } else if (usuario.rol === "secretaria") {
+            navigate("/gestion-citas");
+        }
+    }
 
     function volverAlInicio(evento) {
         if (evento.ctrlKey || evento.metaKey || evento.shiftKey || evento.altKey) return;
@@ -28,7 +38,7 @@ function Login() {
                             Iniciar sesión
                         </h1>
 
-                        <FormularioLogin />
+                        <FormularioLogin onIngresar={ingresar}/>
                         <p className="mt-3 mb-0 text-center">
                             <Enlace href="/" texto="Volver al inicio" onClick={volverAlInicio} />
                         </p>
