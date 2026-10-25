@@ -4,11 +4,11 @@ import PlantillaPrincipal from "../components/templates/plantilla_principal.jsx"
 import FormularioContacto from "../components/organisms/formulario_contacto.jsx";
 import { presentacionContacto } from "../data/contacto.js";
 
-function Contacto() {
+function Contacto({ usuarioActual, onCerrarSesion }) {
     const [enviado, setEnviado] = useState(false);
 
     return (
-        <PlantillaPrincipal>
+        <PlantillaPrincipal usuarioActual={usuarioActual} onCerrarSesion={onCerrarSesion}>
             <Container className="py-5">
                 <Row className="justify-content-center">
                     <Col xs={12} md={9} lg={7} xl={5}>

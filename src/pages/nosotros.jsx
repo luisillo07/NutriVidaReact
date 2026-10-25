@@ -8,9 +8,9 @@ import imagenNosotros from "../assets/nosotros.png";
 
 import { historiaNosotros, presentacionNosotros, tarjetasMisionVision, tarjetasValores} from "../data/nosotros.js";
 
-function Nosotros() {
+function Nosotros({ usuarioActual, onCerrarSesion }) {
     return (
-        <PlantillaPublica>
+        <PlantillaPublica usuarioActual={usuarioActual} onCerrarSesion={onCerrarSesion}>
             <TextoMasImagen
                 titulo={presentacionNosotros.titulo}
                 parrafos={presentacionNosotros.parrafos}

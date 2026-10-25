@@ -3,9 +3,9 @@ import PlantillaPrincipal from "../components/templates/plantilla_principal.jsx"
 import Imagen from "../components/atoms/imagen.jsx";
 import imagenInicio from "../assets/imagen_inicio.png";
 
-function Inicio() {
+function Inicio({ usuarioActual, onCerrarSesion }) {
     return (
-        <PlantillaPrincipal>
+        <PlantillaPrincipal usuarioActual={usuarioActual} onCerrarSesion={onCerrarSesion}>
             <section className="py-5">
                 <Container>
                     <Row className="align-items-center g-5">

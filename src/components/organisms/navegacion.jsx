@@ -1,12 +1,19 @@
-import { Navbar, Nav, Container } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
 
-function NavbarNutriVida({ onNavegar }) {
+function NavbarNutriVida({ onNavegar, usuarioActual, onCerrarSesion }) {
     function ir(evento, ruta) {
         // Permite abrir el enlace en otra pestaña con Ctrl/Cmd + clic.
         if (evento.ctrlKey || evento.metaKey || evento.shiftKey || evento.altKey) return;
         evento.preventDefault();
         onNavegar(ruta);
     }
+
+    function salir() {
+        onCerrarSesion();
+        onNavegar("/");
+    }
+
+    const rutaCitas = usuarioActual?.rol === "secretaria" ? "/gestion-citas" : "/mis-citas";
 
     return (
         <Navbar expand="lg" className="navegacion-nutrivida">
@@ -41,13 +48,22 @@ function NavbarNutriVida({ onNavegar }) {
                     </Nav>
 
                     <Nav className="gap-2 align-items-lg-center mt-3 mt-lg-0">
-                        <Nav.Link
-                            href="/login"
-                            className="navegacion-login"
-                            onClick={(evento) => ir(evento, "/login")}
-                        >
-                            Iniciar sesión
-                        </Nav.Link>
+                        {usuarioActual ? (
+                            <NavDropdown title="Mi cuenta" id="menu-cuenta">
+                                <NavDropdown.Header>{usuarioActual.nombre}</NavDropdown.Header>
+                                <NavDropdown.Item href={rutaCitas} onClick={(evento) => ir(evento, rutaCitas)}>
+                                    {usuarioActual.rol === "secretaria" ? "Gestión de citas" : "Mis citas"}
+                                </NavDropdown.Item>
+                                <NavDropdown.Divider />
+                                <NavDropdown.Item as="button" type="button" onClick={salir}>
+                                    Cerrar sesión
+                                </NavDropdown.Item>
+                            </NavDropdown>
+                        ) : (
+                            <Nav.Link href="/login" className="navegacion-login" onClick={(evento) => ir(evento, "/login")}>
+                                Iniciar sesión
+                            </Nav.Link>
+                        )}
 
                         <Nav.Link
                             href="/agendar"

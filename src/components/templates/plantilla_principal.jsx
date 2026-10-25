@@ -2,13 +2,13 @@ import { useNavigate } from "react-router-dom";
 import NavbarNutriVida from "../organisms/navegacion";
 import Footer from "../organisms/footer";
 
-function PlantillaPrincipal({ children }) {
+function PlantillaPrincipal({ children, usuarioActual, onCerrarSesion }) {
     const navigate = useNavigate();
 
     return (
         <>
             <div className="pantalla-principal">
-                <NavbarNutriVida onNavegar={navigate} />
+                <NavbarNutriVida onNavegar={navigate} usuarioActual={usuarioActual} onCerrarSesion={onCerrarSesion} />
 
                 <main className="contenido-principal">
                     {children}

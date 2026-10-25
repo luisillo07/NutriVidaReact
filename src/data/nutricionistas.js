@@ -9,6 +9,7 @@ export const nutricionistas = [
     nombre: "Carolina Fuentes M.",
     especialidad: "Obesidad y síndrome metabólico",
     diasAtencion: "Lunes, Miércoles y Viernes",
+    diasSemana: [1, 3, 5],
     horaInicio: "09:00",
     horaFin: "17:00",
     descripcion:
@@ -20,6 +21,7 @@ export const nutricionistas = [
     nombre: "Daniela Morales C.",
     especialidad: "Alimentación vegetariana, vegana y trastornos alimentarios",
     diasAtencion: "Lunes a Viernes",
+    diasSemana: [1, 2, 3, 4, 5],
     horaInicio: "08:00",
     horaFin: "13:00",
     descripcion:
@@ -31,6 +33,7 @@ export const nutricionistas = [
     nombre: "Rodrigo Sepúlveda A.",
     especialidad: "Nutrición deportiva y rendimiento",
     diasAtencion: "Martes, Jueves y Sábado",
+    diasSemana: [2, 4, 6],
     horaInicio: "09:00",
     horaFin: "14:00",
     descripcion:
@@ -42,6 +45,7 @@ export const nutricionistas = [
     nombre: "Felipe Araya R.",
     especialidad: "Nutrición pediátrica y familiar",
     diasAtencion: "Martes a Viernes",
+    diasSemana: [2, 3, 4, 5],
     horaInicio: "14:00",
     horaFin: "19:00",
     descripcion:

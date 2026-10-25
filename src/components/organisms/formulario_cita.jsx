@@ -1,13 +1,14 @@
 import { useState } from "react";
-import { Form, Row, Col } from "react-bootstrap";
+import { Alert, Form, Row, Col } from "react-bootstrap";
 import FormularioCampo from "../molecules/formulario_campo";
 import Boton from "../atoms/boton";
 import CampoSeleccion from "../molecules/campo_seleccion.jsx";
 import nutricionistas from "../../data/nutricionistas.js";
-import {validarObligatorio, validarCorreo, validarTelefono, normalizarRut} from "../../utils/validaciones.js";
+import { normalizarRut } from "../../utils/validaciones.js";
+import { DURACION_CITA, obtenerFechaActual, validarSolicitudCita } from "../../utils/citas.js";
 
 
-function FormularioCita() {
+function FormularioCita({ citas, onAgendar }) {
     const [nombre, setNombre] = useState("");
     const [rut, setRut] = useState("");
     const [correo, setCorreo] = useState("");
@@ -21,22 +22,25 @@ function FormularioCita() {
     const [hora, setHora] = useState("");
     const [motivo, setMotivo] = useState("");
     const [errores, setErrores] = useState({});
+    const [resultado, setResultado] = useState(null);
+    const profesional = nutricionistas.find((item) => item.codigo === nutricionistaCodigo);
 
 
     function envio(evento) {
         evento.preventDefault();
+        setResultado(null);
 
-        const nuevosErrores = {
-            nombre: validarObligatorio(nombre),
-            rut: validarObligatorio(rut),
-            correo: validarCorreo(correo),
-            telefono: validarTelefono(telefono),
-            nutricionistaCodigo: validarObligatorio(nutricionistaCodigo),
-            fecha: validarObligatorio(fecha),
-            hora: validarObligatorio(hora),
-            motivo: validarObligatorio(motivo)
+        const datos = {
+            nombre,
+            rut: normalizarRut(rut),
+            correo,
+            telefono,
+            nutricionistaCodigo,
+            fecha,
+            hora,
+            motivo
         };
-
+        const nuevosErrores = validarSolicitudCita(datos, nutricionistas, citas);
         setErrores(nuevosErrores);
 
         const hayErrores = Object.values(nuevosErrores).some(
@@ -47,20 +51,32 @@ function FormularioCita() {
             return;
         }
 
-        console.log("Datos de la solicitud:", {
-            nombre,
-            rut:normalizarRut(rut),
-            correo,
-            telefono,
-            nutricionistaCodigo,
-            fecha,
-            hora,
-            motivo
-        });
+        const respuesta = onAgendar(datos);
+        setResultado(respuesta);
+        if (!respuesta.correcto) {
+            setErrores(respuesta.errores || {});
+            return;
+        }
+
+        setNombre("");
+        setRut("");
+        setCorreo("");
+        setTelefono("");
+        setNutricionistaCodigo("");
+        setFecha("");
+        setHora("");
+        setMotivo("");
+        setErrores({});
     }
 
     return (
         <Form onSubmit={envio} noValidate>
+            {resultado && (
+                <Alert variant={resultado.correcto ? "success" : "danger"} role="status"
+                    dismissible onClose={() => setResultado(null)}>
+                    {resultado.mensaje}
+                </Alert>
+            )}
 
             <fieldset className="mb-4">
                 <legend className="h5 mb-3">
@@ -114,42 +130,42 @@ function FormularioCita() {
                 </Row>
             </fieldset>
 
-            <CampoSeleccion
-                id="cita-nutricionista"
-                label="Nutricionista"
-                valor={nutricionistaCodigo}
-                onChange={setNutricionistaCodigo}
-                opciones={opcionesNutricionistas}
-                error={errores.nutricionistaCodigo}
-            />
-
-            <FormularioCampo
-                id="cita-fecha"
-                label="Fecha"
-                type="date"
-                valor={fecha}
-                onChange={setFecha}
-                error={errores.fecha}
-            />
-
-            <FormularioCampo
-                id="cita-hora"
-                label="Hora"
-                type="time"
-                valor={hora}
-                onChange={setHora}
-                error={errores.hora}
-            />
-
-            <FormularioCampo
-                id="cita-motivo"
-                label="Motivo de consulta"
-                as="textarea"
-                rows={3}
-                valor={motivo}
-                onChange={setMotivo}
-                error={errores.motivo}
-            />
+            <fieldset className="mb-3">
+                <legend className="h5 mb-3">Datos de la cita</legend>
+                <CampoSeleccion
+                    id="cita-nutricionista"
+                    label="Nutricionista"
+                    valor={nutricionistaCodigo}
+                    onChange={setNutricionistaCodigo}
+                    opciones={opcionesNutricionistas}
+                    error={errores.nutricionistaCodigo}
+                />
+                <p className="small text-secondary">
+                    Las citas duran {DURACION_CITA} minutos.
+                    {profesional && ` Atención: ${profesional.diasAtencion}, de ${profesional.horaInicio} a ${profesional.horaFin}.`}
+                </p>
+                <Row>
+                    <Col xs={12} md={6}>
+                        <FormularioCampo
+                            id="cita-fecha" label="Fecha" type="date"
+                            valor={fecha} onChange={setFecha} error={errores.fecha}
+                            min={obtenerFechaActual()}
+                        />
+                    </Col>
+                    <Col xs={12} md={6}>
+                        <FormularioCampo
+                            id="cita-hora" label="Hora" type="time"
+                            valor={hora} onChange={setHora} error={errores.hora}
+                            min={profesional?.horaInicio} max={profesional?.horaFin}
+                            step={DURACION_CITA * 60}
+                        />
+                    </Col>
+                </Row>
+                <FormularioCampo
+                    id="cita-motivo" label="Motivo de consulta" as="textarea" rows={3}
+                    valor={motivo} onChange={setMotivo} error={errores.motivo}
+                />
+            </fieldset>
 
             <Boton
                 type="submit"

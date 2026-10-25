@@ -2,9 +2,9 @@ import { Container, Row, Col, Card } from "react-bootstrap";
 import PlantillaPrincipal from "../components/templates/plantilla_principal.jsx";
 import FormularioCita from "../components/organisms/formulario_cita.jsx";
 
-function AgendarCita() {
+function AgendarCita({ usuarioActual, onCerrarSesion, citas, onAgendar }) {
     return (
-        <PlantillaPrincipal>
+        <PlantillaPrincipal usuarioActual={usuarioActual} onCerrarSesion={onCerrarSesion}>
             <Container className="py-5">
                 <Row className="justify-content-center">
                     <Col xs={12} md={10} lg={8}>
@@ -19,7 +19,7 @@ function AgendarCita() {
                                     una atención nutricional.
                                 </p>
 
-                                <FormularioCita />
+                                <FormularioCita citas={citas} onAgendar={onAgendar} />
                             </Card.Body>
                         </Card>
                     </Col>

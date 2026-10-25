@@ -14,6 +14,9 @@ function FormularioCampo(props) {
                 type={props.type}
                 valor={props.valor}
                 onChange={props.onChange ? (evento) => props.onChange(evento.target.value) : undefined}
+                min={props.min}
+                max={props.max}
+                step={props.step}
                 invalido={error !== ""}
                 valido={props.valido === true}
                 required

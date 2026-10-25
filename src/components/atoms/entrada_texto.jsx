@@ -13,6 +13,9 @@ function EntradaTexto(props) {
             placeholder = {props.placeholder || ""}
             value = {props.valor}
             onChange = {props.onChange}
+            min = {props.min}
+            max = {props.max}
+            step = {props.step}
             isInvalid = {props.invalido === true}
             isValid = {props.valido === true}
             required = {isRequired}

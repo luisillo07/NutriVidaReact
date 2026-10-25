@@ -5,8 +5,9 @@ function Boton(props) {
         <Button
             type={props.type || "button"}
             onClick={props.onClick}
-            variant="success"
-            className="w-100"
+            variant={props.variant || "success"}
+            className={props.className || "w-100"}
+            disabled={props.disabled === true}
         >
             {props.texto}
         </Button>
